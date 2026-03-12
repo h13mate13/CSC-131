@@ -30,7 +30,7 @@ public static void main (String[] args){
 int[] num = {5,3,8,4,2};
 
 System.out.println("Before running the algorthm: " + Arrays.toString(num));
-bubbleSort(num);
+bubbleSort(num); 
 System.out.println("After running the algorthm: " + Arrays.toString(num));
 }
 }
