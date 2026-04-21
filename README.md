@@ -7,4 +7,5 @@ Team:
 4. Sean Sotto
 5. Rishit Anand
 6. Aaron Nguyen
+7. Travis Tran
 8. Aritha Munasinghe
