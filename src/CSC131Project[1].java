@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class CSC131Project {
+public class Delete {
 	public static void main(String[] args) {
 		Scanner sc1 = new Scanner(System.in);
 
