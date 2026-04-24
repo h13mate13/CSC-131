@@ -1,6 +1,9 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
+
+
+//the tasks need to be incorporated to not just arrays but text files maybe? lets work on that later
 public class Edit {
 	public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in);
