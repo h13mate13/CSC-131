@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class Task {
     private String title;
     private String description;
@@ -43,6 +45,16 @@ public class Task {
         completed = true;
     }
 
+    public static boolean markComplete(String title, ArrayList<Task> taskList) {
+        for (Task task : taskList) {
+            if (task.getTitle().equalsIgnoreCase(title)) {
+                task.markCompleted();
+                return true;
+            }
+        }
+        return false;
+    }
+
     public void setTitle(String title) {
         this.title = title;
     }
@@ -61,5 +73,15 @@ public class Task {
 
     public void setCategory(String category) {
         this.category = category;
+    }
+
+    @Override
+    public String toString() {
+        return "Title: " + title
+                + ", Description: " + description
+                + ", Due Date: " + dueDate
+                + ", Priority: " + priority
+                + ", Category: " + category
+                + ", Completed: " + completed;
     }
 }
