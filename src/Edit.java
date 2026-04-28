@@ -1,50 +1,54 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
-
-
-//the tasks need to be incorporated to not just arrays but text files maybe? lets work on that later
 public class Edit {
-	public static void main(String[] args) {
-		Scanner scanner = new Scanner(System.in);
+    public static boolean editTask(
+            String oldTitle,
+            String newTitle,
+            String newDescription,
+            String newDueDate,
+            String newPriority,
+            String newCategory,
+            ArrayList<Task> taskList) {
 
-		ArrayList<String> taskList = new ArrayList<>();
+        for (Task task : taskList) {
+            if (task.getTitle().equalsIgnoreCase(oldTitle)) {
+                task.setTitle(newTitle);
+                task.setDescription(newDescription);
+                task.setDueDate(newDueDate);
+                task.setPriority(newPriority);
+                task.setCategory(newCategory);
+                return true;
+            }
+        }
+        return false;
+    }
 
-		System.out.println("How many tasks to complete?");
-		int taskCount = scanner.nextInt();
-		scanner.nextLine();
+    public static void editTaskMenu(Scanner scanner, ArrayList<Task> taskList) {
+        System.out.print("What task do you want to edit? ");
+        String oldTask = scanner.nextLine();
 
-		for (int i = 0; i < taskCount; i++) {
-			System.out.println("Task " + (i + 1) + "?");
-			String newTask = scanner.nextLine();
-			taskList.add(newTask);
-		}
+        System.out.print("What is the new title? ");
+        String newTitle = scanner.nextLine();
 
-		System.out.println("Tasks before edit: " + taskList);
+        System.out.print("What is the new description? ");
+        String newDescription = scanner.nextLine();
 
-		System.out.println("What task do you want to edit?");
-		String oldTask = scanner.nextLine();
+        System.out.print("What is the new due date? ");
+        String newDueDate = scanner.nextLine();
 
-		System.out.println("What is the new task?");
-		String newTask = scanner.nextLine();
+        System.out.print("What is the new priority? ");
+        String newPriority = scanner.nextLine();
 
-		boolean edited = editTask(oldTask, newTask, taskList);
+        System.out.print("What is the new category? ");
+        String newCategory = scanner.nextLine();
 
-		if (edited) {
-			System.out.println("Tasks after edit: " + taskList);
-		} else {
-			System.out.println("Task not found.");
-		}
+        boolean edited = editTask(oldTask, newTitle, newDescription, newDueDate, newPriority, newCategory, taskList);
 
-	}
-
-	public static boolean editTask(String oldTask, String newTask, ArrayList<String> taskList) {
-		for (int i = 0; i < taskList.size(); i++) {
-			if (taskList.get(i).equalsIgnoreCase(oldTask)) {
-				taskList.set(i, newTask);
-				return true;
-			}
-		}
-		return false;
-	}
+        if (edited) {
+            System.out.println("Task edited successfully.");
+        } else {
+            System.out.println("Task not found.");
+        }
+    }
 }

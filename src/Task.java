@@ -1,12 +1,22 @@
+
+import java.util.Locale;
+import java.util.Locale.Category;
+
 public class Task {
     private String title;
     private String description;
+
+    //make this work only for a specific template
     private String dueDate;
-    private String priority;
-    private String category;
+    
+    //make this into an enum
+    private Priority priority;
+
+    //we need to make this an enum
+    private Category category;
     private boolean completed;
 
-    public Task(String title, String description, String dueDate, String priority, String category) {
+    public Task(String title, String description, String dueDate, Priority priority, Category category) {
         this.title = title;
         this.description = description;
         this.dueDate = dueDate;
@@ -15,33 +25,22 @@ public class Task {
         this.completed = false;
     }
 
+    //right now we are only returning the title so that the users cannot access or search
+    // for a task other than looking it up by category or priority?
     public String getTitle() {
         return title;
     }
 
-    public String getDescription() {
-        return description;
-    }
-
-    public String getDueDate() {
-        return dueDate;
-    }
-
-    public String getPriority() {
-        return priority;
-    }
-
-    public String getCategory() {
+    //added category and priotirty getter methods
+    public Category getCategory(){
         return category;
     }
 
-    public boolean isCompleted() {
-        return completed;
+    public Priority getPriority(){
+        return priority;
     }
 
-    public void markCompleted() {
-        completed = true;
-    }
+
 
     public void setTitle(String title) {
         this.title = title;
@@ -59,7 +58,22 @@ public class Task {
         this.priority = priority;
     }
 
-    public void setCategory(String category) {
-        this.category = category;
+    public void setCompleted(boolean completed) {
+        this.completed = completed;
+    }
+
+    public static boolean markComplete(String title, java.util.ArrayList<Task> taskList) {
+        for (Task task : taskList) {
+            if (task.getTitle().equalsIgnoreCase(title)) {
+                task.setCompleted(true);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public String toString() {
+        return title + " | " + description + " | " + dueDate + " | " + priority + " | " + category +
+                (completed ? " | Completed" : " | Not Completed");
     }
 }
