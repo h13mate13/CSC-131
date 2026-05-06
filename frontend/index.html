@@ -4,54 +4,41 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Press+Start+2P&display=swap" rel="stylesheet">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Game of Life</title>
+  <title>TaskFlow</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div class="app">
     <header>
-  <h1>🌱 The Game of Life</h1>
-  <p class="authors">by The Geekers 👾</p>
-  <p class="tagline">Level up and grow your productivity!</p>
-</header>
+      <h1>🌱 TaskFlow</h1>
+      <p class="authors">by The Geekers 👾</p>
+      <p class="tagline">Level up and grow your productivity!</p>
+    </header>
 
     <section class="task-form">
       <h2>Create New Task</h2>
 
-      <input type="text" placeholder="Task title" />
-      <textarea placeholder="Description"></textarea>
-      <input type="date" />
+      <input id="taskTitle" type="text" placeholder="Task title" />
+      <textarea id="taskDescription" placeholder="Description"></textarea>
+      <input id="taskDueDate" type="date" />
 
-      <select>
+      <select id="taskPriority">
         <option>Low Priority</option>
         <option>Medium Priority</option>
         <option>High Priority</option>
       </select>
 
-      <input type="text" placeholder="Category" />
+      <input id="taskCategory" type="text" placeholder="Category" />
 
-      <button>Add Task</button>
+      <button id="addTaskButton">Add Task</button>
     </section>
 
     <section class="task-list">
       <h2>Your Tasks</h2>
-
-      <div class="task-card">
-        <div>
-          <h3>Finish Java Project</h3>
-          <p>Create the frontend for the productivity app.</p>
-          <span>Due: 2026-06-10</span>
-          <span>Priority: High</span>
-          <span>Category: School</span>
-        </div>
-
-        <div class="task-actions">
-          <button class="complete">✓</button>
-          <button class="edit">✎</button>
-          <button class="delete">✕</button>
-        </div>
-      </div>
+      <div id="taskContainer"></div>
     </section>
   </div>
+
+  <script src="script.js"></script>
 </body>
 </html>
