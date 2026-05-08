@@ -1,4 +1,4 @@
-const API_URL = "http://localhost:8080";
+const API_URL = "http://127.0.0.1:8080";
 
 const titleInput = document.getElementById("taskTitle");
 const descriptionInput = document.getElementById("taskDescription");
@@ -42,18 +42,30 @@ async function addTask() {
   formData.append("priority", priority);
   formData.append("category", category);
 
-  await fetch(`${API_URL}/tasks`, {
-    method: "POST",
-    body: formData
-  });
+  try {
+    const response = await fetch(`${API_URL}/tasks`, {
+      method: "POST",
+      body: formData
+    });
 
-  titleInput.value = "";
-  descriptionInput.value = "";
-  dueDateInput.value = "";
-  priorityInput.value = "Low Priority";
-  categoryInput.value = "";
+    if (!response.ok) {
+      const errorText = await response.text();
+      console.error("Add task failed:", errorText);
+      alert("Task was not added. Check the backend terminal.");
+      return;
+    }
 
-  loadTasks();
+    titleInput.value = "";
+    descriptionInput.value = "";
+    dueDateInput.value = "";
+    priorityInput.value = "Low Priority";
+    categoryInput.value = "";
+
+    loadTasks();
+  } catch (error) {
+    console.error("Could not connect to backend:", error);
+    alert("Could not connect to Java backend. Make sure TaskApiServer.java is running.");
+  }
 }
 
 function displayTasks(tasks) {

@@ -1,5 +1,3 @@
-import com.sun.net.httpserver.HttpExchange;
-import com.sun.net.httpserver.HttpServer;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -11,7 +9,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.sun.net.httpserver.HttpExchange;
+import com.sun.net.httpserver.HttpServer;
+
 public class TaskApiServer {
+
     private static final int PORT = 8080;
     private static final TaskManager taskManager = TaskManager.getInstance();
 
@@ -62,9 +64,13 @@ public class TaskApiServer {
                 handleCompleteTask(exchange, path);
                 return;
             }
-
+if (method.equalsIgnoreCase("GET") && path.equals("/")) {
+    sendJson(exchange, 200, "{\"message\":\"TaskFlow backend is running\"}");
+    return;
+}
             sendJson(exchange, 404, "{\"error\":\"Route not found\"}");
         } catch (Exception exception) {
+            exception.printStackTrace();
             sendJson(exchange, 500, "{\"error\":\"Server error\"}");
         }
     }
